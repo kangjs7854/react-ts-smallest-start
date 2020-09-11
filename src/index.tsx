@@ -1,6 +1,12 @@
 import React ,{useState} from 'react'
 import ReactDOM from 'react-dom'
 import './index.less'
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+
+import {reducers,CounterStore} from './Counter'
+
+const store = createStore(reducers);
 
 function Hello(){
     const [count,setCount] = useState(0)
@@ -14,4 +20,8 @@ function Hello(){
 }
 
 
-ReactDOM.render(<Hello />, document.getElementById('root'))
+ReactDOM.render(
+    <Provider store={ store }>
+        <CounterStore />
+    </Provider>,
+    document.getElementById('root'))
